@@ -96,6 +96,11 @@ class VisitTest {
 	}
 
 	@Test
+	void blankOptionalPhoneIsStoredAsMissing() {
+		assertThat(Visit.walkIn("Wendy Walkin", " ", "Delivery", HOST, TODAY, NOW).getVisitorPhone()).isNull();
+	}
+
+	@Test
 	void preRegisteredVisitorCannotCheckInOnAnotherDay() {
 		Visit visit = Visit.preRegister("Vic Visitor", null, "Meeting", HOST, TODAY.plusDays(1), TODAY, NOW);
 		assertThatThrownBy(() -> visit.checkIn("17", TODAY, NOW)).isInstanceOf(VisitRuleException.class);

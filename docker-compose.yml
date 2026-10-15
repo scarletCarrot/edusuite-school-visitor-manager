@@ -1,0 +1,31 @@
+# Whole app: `docker compose up --build`, then open http://localhost:4200
+# Credentials below are for local development only.
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: visitors
+      POSTGRES_USER: visitors
+      POSTGRES_PASSWORD: visitors
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U visitors"]
+      interval: 2s
+      retries: 30
+
+  backend:
+    build: backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/visitors
+      # Override for demos, e.g. VISITORS_MAX_STAY=PT2M docker compose up
+      VISITORS_HOST_RESPONSE_TIMEOUT: ${VISITORS_HOST_RESPONSE_TIMEOUT:-PT10M}
+      VISITORS_MAX_STAY: ${VISITORS_MAX_STAY:-PT4H}
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build: frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend

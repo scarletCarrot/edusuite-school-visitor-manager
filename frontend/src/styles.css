@@ -1,0 +1,18 @@
+body { margin: 0; font-family: system-ui, sans-serif; color: #1d2433; background: #f5f6f8; }
+header { display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1.5rem; background: #1f4e79; color: #fff; }
+header h1 { flex: 1; margin: 0; font-size: 1.25rem; }
+main { padding: 1.5rem; }
+h2 { font-size: 1.1rem; }
+.cards { display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-start; }
+.card { display: flex; flex-direction: column; gap: 0.6rem; min-width: 280px; padding: 1rem; background: #fff; border-radius: 6px; box-shadow: 0 1px 3px #0002; }
+.card h2 { margin: 0; }
+.narrow { max-width: 320px; margin: 2rem auto; }
+label { display: flex; flex-direction: column; gap: 0.2rem; font-size: 0.9rem; }
+input, select, button { font: inherit; padding: 0.4rem 0.6rem; }
+button { border: 0; border-radius: 4px; background: #1f4e79; color: #fff; cursor: pointer; }
+button.secondary { background: #e3e6eb; color: #1d2433; }
+button:disabled { opacity: 0.5; cursor: default; }
+table { width: 100%; border-collapse: collapse; background: #fff; }
+th, td { padding: 0.5rem; border-bottom: 1px solid #e3e6eb; text-align: left; vertical-align: top; }
+tr.overstayed { background: #fdecea; }
+.error { color: #b3261e; font-weight: 600; }

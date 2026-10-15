@@ -68,7 +68,7 @@ public class Visit {
 		this.type = type;
 		this.state = state;
 		this.visitorName = visitorName;
-		this.visitorPhone = visitorPhone;
+		this.visitorPhone = visitorPhone == null || visitorPhone.isBlank() ? null : visitorPhone.strip();
 		this.purpose = purpose;
 		this.host = host;
 		this.visitDate = visitDate;
