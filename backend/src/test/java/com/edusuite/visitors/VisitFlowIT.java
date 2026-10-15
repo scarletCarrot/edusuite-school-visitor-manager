@@ -159,7 +159,8 @@ class VisitFlowIT {
 		mvc.perform(get("/api/visits/today").with(DESK))
 			.andExpect(jsonPath("$[?(@.id == %d)].overstayed".formatted(id)).value(false));
 
-		jdbc.update("update visit set checked_in_at = checked_in_at - interval '5 hours' where id = ?", id);
+		// Checked in yesterday and never checked out: still on campus today, and overstayed.
+		jdbc.update("update visit set checked_in_at = checked_in_at - interval '1 day', visit_date = visit_date - 1 where id = ?", id);
 		mvc.perform(get("/api/visits/today").with(ADMIN))
 			.andExpect(jsonPath("$[?(@.id == %d)].overstayed".formatted(id)).value(true));
 	}

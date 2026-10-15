@@ -14,7 +14,8 @@ then `docs/assumptions.md`.
 
 ## Commands
 - Whole app: `docker compose up --build` (UI at http://localhost:4200)
-- Backend tests (needs Docker for Testcontainers): `cd backend && ./mvnw verify`
+- Backend tests (needs Docker for Testcontainers): `cd backend && sh mvnw verify` (Windows: `mvnw.cmd verify`)
+- Backend + throwaway Postgres for UI development: `cd backend && sh mvnw spring-boot:test-run`, then `cd frontend && npm start`
 - E2E: `cd e2e && npm ci && npx playwright install chromium && npx playwright test`
 
 ## Rules

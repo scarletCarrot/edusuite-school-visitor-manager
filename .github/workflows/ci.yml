@@ -16,7 +16,7 @@ jobs:
           java-version: 21
           cache: maven
       # Unit tests, then *IT integration tests against PostgreSQL in Testcontainers.
-      - run: ./mvnw -B verify
+      - run: sh mvnw -B verify
         working-directory: backend
 
   e2e:
